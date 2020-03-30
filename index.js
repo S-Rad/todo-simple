@@ -12,7 +12,7 @@ window.onload = () => {
 
 const addtodolistener = () => {
   addtodo(addtodotextfield.value);
-  rendertodo(addtodotextfield.value);
+  rendertodo(todos[0]);
   debugger;
 };
 
