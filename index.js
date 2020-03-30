@@ -14,6 +14,7 @@ window.onload = () => {
 const addtodolistener = () => {
   addtodo(addtodotextfield.value);
   renderalltodos();
+  addtodotextfield.value = null;
 };
 
 const addtodo = todotext => {
