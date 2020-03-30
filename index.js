@@ -42,6 +42,23 @@ const rendertodo = ({ id, text, active }) => {
   todowrapper.appendChild(tododiv);
 };
 
+const createdeletebutton = () => {
+  const deletebutton = document.createElement("button");
+  deletebutton.type = "button";
+  deletebutton.onclick = deletebuttonclicked;
+};
+
+const deletebuttonclicked = e => {
+  const parent = e.target.parentElement;
+  removetodo(parent.getAttribute("key"));
+  renderalltodos();
+};
+
+const removetodo = id => {
+  const index = todos.findIndex(todo => todo.id === id);
+  todos.splice(index, 1);
+};
+
 const createcheckbox = active => {
   const todocheckbox = document.createElement("input");
   todocheckbox.type = "checkbox";
@@ -59,7 +76,6 @@ const checkboxclicked = e => {
 const toggletodo = id => {
   const index = todos.findIndex(todo => todo.id === id);
   todos[index].active = !todos[index].active;
-  console.log(todos[index].active);
 };
 
 const emptytodolist = () => (todowrapper.innerHTML = null);
