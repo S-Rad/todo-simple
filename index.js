@@ -38,6 +38,7 @@ const rendertodo = ({ id, text, active }) => {
   const todotextnode = document.createTextNode(text);
   tododiv.appendChild(createcheckbox(active));
   tododiv.appendChild(todotextnode);
+  tododiv.appendChild(createdeletebutton());
 
   todowrapper.appendChild(tododiv);
 };
@@ -46,6 +47,7 @@ const createdeletebutton = () => {
   const deletebutton = document.createElement("button");
   deletebutton.type = "button";
   deletebutton.onclick = deletebuttonclicked;
+  return deletebutton;
 };
 
 const deletebuttonclicked = e => {
