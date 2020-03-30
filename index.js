@@ -46,6 +46,7 @@ const rendertodo = ({ id, text, active }) => {
 const createdeletebutton = () => {
   const deletebutton = document.createElement("button");
   deletebutton.type = "button";
+  deletebutton.className = "deletebutton";
   deletebutton.onclick = deletebuttonclicked;
   return deletebutton;
 };

@@ -16,7 +16,12 @@ header {
   border-bottom-color: lightgray;
 }
 
-.donetodo {
+.activetodo {
+  text-decoration: none;
+  color: #696969;
+}
+
+.inactivetodo {
   text-decoration: line-through;
   color: lightslategrey;
 }
@@ -26,6 +31,9 @@ header {
 }
 
 .deletebutton {
+  height: 20px;
+  width: 16px;
+  background-image: url("bin.png");
   float: right;
 }
 
