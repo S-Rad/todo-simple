@@ -8,12 +8,12 @@ window.onload = () => {
   addtodobutton = document.querySelector("#addtodobutton");
   todowrapper = document.querySelector("#todowrapper");
   addtodobutton.onclick = addtodolistener;
+  renderalltodos();
 };
 
 const addtodolistener = () => {
   addtodo(addtodotextfield.value);
-  rendertodo(todos[0]);
-  debugger;
+  renderalltodos();
 };
 
 const addtodo = todotext => {
@@ -24,13 +24,21 @@ const addtodo = todotext => {
   });
 };
 
+const renderalltodos = () => {
+  emptytodolist();
+  todos.forEach(rendertodo);
+};
+
 const rendertodo = ({ id, text, active }) => {
+  console.log(text);
   let tododiv = document.createElement("div");
   tododiv.className = "activetodo";
   let todotextnode = document.createTextNode(text);
   tododiv.appendChild(todotextnode);
   todowrapper.appendChild(tododiv);
 };
+
+const emptytodolist = () => (todowrapper.innerHTML = null);
 
 function uuidv4() {
   return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
