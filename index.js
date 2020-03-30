@@ -31,13 +31,35 @@ const renderalltodos = () => {
 };
 
 const rendertodo = ({ id, text, active }) => {
-  console.log(text);
-  let tododiv = document.createElement("div");
+  const tododiv = document.createElement("div");
+
   tododiv.className = active ? "activetodo" : "inactivetodo";
   tododiv.setAttribute("key", id);
-  let todotextnode = document.createTextNode(text);
+  const todotextnode = document.createTextNode(text);
+  tododiv.appendChild(createcheckbox(active));
   tododiv.appendChild(todotextnode);
+
   todowrapper.appendChild(tododiv);
+};
+
+const createcheckbox = active => {
+  const todocheckbox = document.createElement("input");
+  todocheckbox.type = "checkbox";
+  todocheckbox.checked = !active;
+  todocheckbox.onclick = checkboxclicked;
+  return todocheckbox;
+};
+
+const checkboxclicked = e => {
+  const parent = e.target.parentElement;
+  toggletodo(parent.getAttribute("key"));
+  renderalltodos();
+};
+
+const toggletodo = id => {
+  const index = todos.findIndex(todo => todo.id === id);
+  todos[index].active = !todos[index].active;
+  console.log(todos[index].active);
 };
 
 const emptytodolist = () => (todowrapper.innerHTML = null);
