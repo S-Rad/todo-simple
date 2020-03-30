@@ -32,7 +32,8 @@ const renderalltodos = () => {
 const rendertodo = ({ id, text, active }) => {
   console.log(text);
   let tododiv = document.createElement("div");
-  tododiv.className = "activetodo";
+  tododiv.className = active ? "activetodo" : "inactivetodo";
+  tododiv.setAttribute("key", id);
   let todotextnode = document.createTextNode(text);
   tododiv.appendChild(todotextnode);
   todowrapper.appendChild(tododiv);
