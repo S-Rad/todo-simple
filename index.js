@@ -18,14 +18,17 @@ const addtodolistener = () => {
 };
 
 async function initializetodos() {
-  await fetchtodos();
+  await loadtodos();
   renderalltodos();
 }
 
-const fetchtodos = () =>
-  fetch("todos.json")
-    .then(response => response.json())
-    .then(jsontodos => (todos = todos.concat(jsontodos)));
+const loadtodos = () =>
+  localforage
+    .getItem("todos")
+    .then(jsontodos =>
+      jsontodos ? jsontodos : localforage.setItem("todos", [])
+    )
+    .finally(jsontodos => (todos = todos.concat(jsontodos)));
 
 const addtodo = todotext => {
   todos.push({
