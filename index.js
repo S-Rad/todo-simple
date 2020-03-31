@@ -1,14 +1,14 @@
 let addtodotextfield;
 let addtodobutton;
 let todowrapper;
-const todos = [];
+let todos = [];
 
 window.onload = () => {
   addtodotextfield = document.querySelector("#addtodofield");
   addtodobutton = document.querySelector("#addtodobutton");
   todowrapper = document.querySelector("#todowrapper");
   addtodobutton.onclick = addtodolistener;
-  renderalltodos();
+  initializetodos();
 };
 
 const addtodolistener = () => {
@@ -16,6 +16,16 @@ const addtodolistener = () => {
   renderalltodos();
   addtodotextfield.value = null;
 };
+
+async function initializetodos() {
+  await fetchtodos();
+  renderalltodos();
+}
+
+const fetchtodos = () =>
+  fetch("todos.json")
+    .then(response => response.json())
+    .then(jsontodos => (todos = todos.concat(jsontodos)));
 
 const addtodo = todotext => {
   todos.push({
