@@ -22,6 +22,7 @@ async function initializetodos() {
   renderalltodos();
 }
 
+//4 methoden: 1 loeschen, 1 hinzufuegen, toggletodo, ein einzelnes element finden
 const loadtodos = () =>
   localforage
     .getItem("todos")
