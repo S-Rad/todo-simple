@@ -28,7 +28,7 @@ const loadtodos = () =>
     .then(jsontodos =>
       jsontodos ? jsontodos : localforage.setItem("todos", [])
     )
-    .finally(jsontodos => (todos = todos.concat(jsontodos)));
+    .then(jsontodos => (todos = todos.concat(jsontodos)));
 
 const addtodo = todotext => {
   todos.push({
